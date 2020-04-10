@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import Layout from './components/Layout';
+import Card from './components/Card';
+
+import frontIMG from './statics/images/card-front.png';
+import backIMG from './statics/images/card-back.png';
+
+const App = () => {
+
+  const [flipped, setFlipped] = useState([]);
+
+  const handleClick = id => setFlipped([...flipped, id]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Card 
+        back={backIMG}
+        flipped={flipped.includes(1)}
+        front={frontIMG}
+        handleClick={() => handleClick(1)}
+        id={1}
+      />
+    </Layout>
   );
 }
 
