@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./style.css";
 
-const Card = ({ back, flipped, front, handleClick, id }) => {
+const Card = ({ flipped, handleClick, id, type }) => {
   return (
     <div
       className={`card ${flipped && "card--flipped"}`}
@@ -11,9 +11,12 @@ const Card = ({ back, flipped, front, handleClick, id }) => {
     >
       <div className="card__flipper">
         <img
-          src={flipped ? front : back}
+          src={flipped 
+            ? `./statics/images/card-${type}.png` 
+            : './statics/images/card-back.png'}
           alt="Card"
-          className={`card__image ${
+          className={`card__image 
+          ${
             flipped ? "card__image--front" : "card__image--back"
           }`}
         />
@@ -23,11 +26,10 @@ const Card = ({ back, flipped, front, handleClick, id }) => {
 };
 
 Card.propTypes = {
-  back: PropTypes.string.isRequired,
   flipped: PropTypes.bool.isRequired,
-  front: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Card;
